@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facebook Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login Page -->
+  <div class="login-container" id="loginPage">
+    <h1 class="logo">facebook</h1>
+    <div class="login-box">
+      <input type="text" id="email" placeholder="Email or phone number" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Log In</button>
+      <a href="#">Forgot password?</a>
+      <hr />
+      <button class="create-btn">Create New Account</button>
+    </div>
+
+    <!-- Sign-up Form -->
+    <div class="signup-box" id="signupBox" style="display: none;">
+      <h2>Create a new account</h2>
+      <input type="text" placeholder="First name" />
+      <input type="text" placeholder="Last name" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="New password" />
+      <button onclick="createAccount()">Sign Up</button>
+      <p><a href="#" onclick="closeSignup()">Cancel</a></p>
+    </div>
+  </div>
+
+  <!-- Feed Page -->
+  <div class="feed-container" id="feedPage" style="display: none;">
+    <div class="navbar">
+      <h2>facebook</h2>
+      <button onclick="logout()">Log Out</button>
+    </div>
+    <div class="feed">
+      <div class="post">
+        <h3>John Doe</h3>
+        <p>This is a sample post. Welcome to the Facebook clone!</p>
+      </div>
+      <div class="post">
+        <h3>Jane Smith</h3>
+        <p>Enjoying the Facebook clone demo!</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

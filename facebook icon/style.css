@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+}
+
+.logo {
+  color: #1877f2;
+  font-size: 48px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.login-container {
+  text-align: center;
+}
+
+.login-box,
+.signup-box {
+  background: white;
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.login-box input,
+.signup-box input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.login-box button,
+.signup-box button {
+  background: #1877f2;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-btn {
+  background: #42b72a;
+  margin-top: 10px;
+}
+
+.signup-box h2 {
+  margin-bottom: 10px;
+}
+
+.signup-box a {
+  color: #1877f2;
+  text-decoration: none;
+}
+
+.feed-container {
+  display: none;
+  flex-direction: column;
+}
+
+.navbar {
+  background: #1877f2;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feed {
+  padding: 20px;
+}
+
+.post {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
