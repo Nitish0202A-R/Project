@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Train Finder App with Status</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🚆 Train Finder</h1>
+    <div class="form">
+      <input list="stations" id="source" placeholder="From Station" autocomplete="off" />
+      <input list="stations" id="destination" placeholder="To Station" autocomplete="off" />
+      <button onclick="searchTrains()">Search Trains</button>
+    </div>
+
+    <datalist id="stations">
+      <option value="Chapra"></option>
+      <option value="New Delhi"></option>
+      <option value="SMVT Bengaluru"></option>
+      <option value="Kolkata"></option>
+      <option value="Danapur"></option>
+      <option value="Howrah Junction"></option>
+      <!-- Add more stations here -->
+    </datalist>
+
+    <div id="results"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
