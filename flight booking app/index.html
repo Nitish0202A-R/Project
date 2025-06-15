@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Booking with Payment Options</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Flight Booking</h1>
+    
+
+    <form id="flightForm">
+      <input type="text" id="from" placeholder="From (e.g. DEL)" required />
+      <input type="text" id="to" placeholder="To (e.g. JFK)" required />
+      <input type="date" id="date" required />
+      <button type="submit">Search Flights</button>
+    </form>
+
+    <div id="results" class="results"></div>
+    <div>
+        <div class="flight-wrapper"></div>
+        <div class="flight-column left"></div>
+        <div class="flight-column right"></div>
+    </div>
+    <div class="extra-flight"></div>
+  
+ 
+
+
+  <!-- Payment Modal -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Choose Payment Method</h2>
+      <div class="payment-options">
+        <button onclick="showUPI()">UPI</button>
+        <button onclick="showCard()">Card</button>
+        <button onclick="showNetBanking()">Net Banking</button>
+        <button onclick="showQR()">QR Code</button>
+      </div>
+      <div id="paymentDetails" class="payment-details"></div>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
