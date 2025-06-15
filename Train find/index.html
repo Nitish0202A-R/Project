@@ -14,7 +14,6 @@
       <input list="stations" id="destination" placeholder="To Station" autocomplete="off" />
       <button onclick="searchTrains()">Search Trains</button>
     </div>
-
     <datalist id="stations">
       <option value="Chapra"></option>
       <option value="New Delhi"></option>
@@ -24,10 +23,32 @@
       <option value="Howrah Junction"></option>
       <!-- Add more stations here -->
     </datalist>
-
     <div id="results"></div>
   </div>
-
+<div class="internet-banking-details" style="margin-top:10px; display:none;">
+  <label>
+    Bank Name:
+    <input type="text" name="bankName" placeholder="Your bank name"/>
+  </label>
+  <br><br>
+    </div>
+    <div class="internet-banking-details" style="margin-top:10px; display:none;">
+  <label>
+    Select Bank:
+    <select name="bankName" required>
+      <option value="">--Select Bank--</option>
+      <option value="HDFC Bank">HDFC Bank</option>
+      <option value="ICICI Bank">ICICI Bank</option>
+      <option value="State Bank of India">State Bank of India</option>
+      <option value="Axis Bank">Axis Bank</option>
+      <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+      <option value="Punjab National Bank">Punjab National Bank</option>
+      <option value="Bank of Baroda">Bank of Baroda</option>
+      <option value="Yes Bank">Yes Bank</option>
+    </select>
+  </label>
+  <br><br>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
