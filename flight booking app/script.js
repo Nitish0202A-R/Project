@@ -1,45 +1,94 @@
-document.getElementById("flightForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+// Prices for each cabin class (example values in ₹)
+const cabinPrices = {
+  "Economy": 5000,
+  "Premium Economy": 8000,
+  "Business": 15000,
+  "First Class": 25000
+};
 
-  const from = document.getElementById("from").value.toUpperCase();
-  const to = document.getElementById("to").value.toUpperCase();
-  const date = document.getElementById("date").value;
-
- const flights = [
-  { airline: "Air India", time: "10:00 AM", price: "₹6500" },
-  { airline: "IndiGo", time: "2:00 PM", price: "₹8900" },
-  { airline: "SpiceJet", time: "6:00 PM", price: "₹5500" },
-  { airline: "Vistara", time: "8:00 AM", price: "₹7200" },
-  { airline: "GoAir", time: "12:00 PM", price: "₹4800" },
-  { airline: "AirAsia", time: "4:00 PM", price: "₹5200" },
-  { airline: "TruJet", time: "9:00 PM", price: "₹4500" }
+// Example flights with airline names (could be expanded or dynamic)
+const flights = [
+  "Air India",
+  "IndiGo",
+  "SpiceJet",
+  "Vistara",
+  "GoAir",
+  "AirAsia",
+  "TruJet"
 ];
 
+// Form submission handling
+document.getElementById('flightForm').addEventListener('submit', function (e) {
+  e.preventDefault();
 
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = `<h3>Flights on ${date}</h3>`;
-  flights.forEach((flight, index) => {
-    resultsDiv.innerHTML += `
-      <div class="flight-card">
-        <strong>${flight.airline}</strong><br>
-        From: ${from} → ${to}<br>
-        Time: ${flight.time}<br>
-        Price: ${flight.price}<br>
-        <button onclick="openModal()">Book Now</button>
-      </div>
-    `;
-  });
+  const from = document.getElementById('from').value.toUpperCase();
+  const to = document.getElementById('to').value.toUpperCase();
+  const departDate = document.getElementById('depart-date').value;
+  const returnDate = document.getElementById('return-date').value;
+  const travellers = parseInt(document.getElementById('travellers').value);
+  const cabin = document.getElementById('cabin').value;
+
+  if (!from || !to || !departDate || !travellers || !cabin) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  // Select a flight (random from flights list)
+  const flightName = flights[Math.floor(Math.random() * flights.length)];
+
+  // Price per traveller for one-way
+  const pricePerTraveller = cabinPrices[cabin] || 0;
+
+  // Calculate total price:
+  // If returnDate exists, assume return price is double (both ways)
+  const isReturnTrip = returnDate && returnDate.trim() !== "";
+  const totalAmount = pricePerTraveller * travellers * (isReturnTrip ? 2 : 1);
+
+  // Show summary
+  const results = document.getElementById('results');
+  results.innerHTML = `
+    <h3>Flight Search Summary:</h3>
+    <p><strong>Flight:</strong> ${flightName}</p>
+    <p><strong>From:</strong> ${from}</p>
+    <p><strong>To:</strong> ${to}</p>
+    <p><strong>Depart Date:</strong> ${departDate}</p>
+    <p><strong>Return Date:</strong> ${isReturnTrip ? returnDate : "One Way"}</p>
+    <p><strong>Travellers:</strong> ${travellers}</p>
+    <p><strong>Cabin Class:</strong> ${cabin}</p>
+    <p><strong>Total Amount:</strong> ₹${totalAmount.toLocaleString()}</p>
+    <button onclick="openModal()">Proceed to Payment</button>
+  `;
+
+  // Store current booking details globally
+  window.currentBooking = {
+    flightName,
+    from,
+    to,
+    departDate,
+    returnDate: isReturnTrip ? returnDate : null,
+    travellers,
+    cabin,
+    totalAmount
+  };
+
+  window.currentTotalAmount = totalAmount;
 });
 
+// Modal handling
 function openModal() {
-  document.getElementById("paymentModal").style.display = "block";
+  const modal = document.getElementById("paymentModal");
+  modal.style.display = "flex";
+  modal.classList.remove("hidden");
   document.getElementById("paymentDetails").innerHTML = "";
 }
 
 function closeModal() {
-  document.getElementById("paymentModal").style.display = "none";
+  const modal = document.getElementById("paymentModal");
+  modal.style.display = "none";
+  modal.classList.add("hidden");
 }
 
+// Payment Options
 function showUPI() {
   document.getElementById("paymentDetails").innerHTML = `
     <h3>Pay via UPI</h3>
@@ -51,7 +100,7 @@ function showUPI() {
 function showCard() {
   document.getElementById("paymentDetails").innerHTML = `
     <h3>Pay via Card</h3>
-    <p>Card Number: <input type="text" maxlength="16" /></p>
+    <p>Card Number: <input type="text" maxlength="16" placeholder="1234 5678 9012 3456" /></p>
     <p>Expiry: <input type="month" /></p>
     <p>CVV: <input type="password" maxlength="3" /></p>
     <button onclick="confirmPayment()">Pay Now</button>
@@ -62,11 +111,13 @@ function showNetBanking() {
   document.getElementById("paymentDetails").innerHTML = `
     <h3>Pay via Internet Banking</h3>
     <select>
-      <option>SBI</option>
-      <option>HDFC</option>
-      <option>ICICI</option>
-      <option>Axis</option>
-    </select><br><br>
+      <option value="">Select Bank</option>
+      <option value="SBI">SBI</option>
+      <option value="HDFC">HDFC</option>
+      <option value="ICICI">ICICI</option>
+      <option value="Axis">Axis Bank</option>
+    </select>
+    <br/><br/>
     <button onclick="confirmPayment()">Pay Now</button>
   `;
 }
@@ -74,12 +125,13 @@ function showNetBanking() {
 function showQR() {
   document.getElementById("paymentDetails").innerHTML = `
     <h3>Scan QR to Pay</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay&size=200x200" alt="QR Code">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay&size=200x200" alt="QR Code" />
     <p>Scan using any UPI app</p>
   `;
 }
 
+// Confirm payment function
 function confirmPayment() {
-  alert("Payment successful! Your flight has been booked.");
+  alert(`Payment successful! Your flight (${window.currentBooking.flightName}) has been booked.\nTotal Paid: ₹${window.currentTotalAmount.toLocaleString()}`);
   closeModal();
 }

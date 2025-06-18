@@ -2,45 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flight Booking with Payment Options</title>
+  <title>Flight Booking - Search Flights at Lowest Air Fare Online | Air India</title>
+  <link rel="shortcut icon" type="x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+     
+  <!-- 🔝 Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="left">
+      <span>English</span>
+      <span>Indian</span>
+      <span id="authentication-link" class="login">Log in</span>
+    </div>
+    <div class="right">
+      <a href="#">Flights</a>
+      <a href="#">Hotels</a>
+      <a href="#">Car Hire</a>
+    </div>
+  </div>
+
+  <!-- 🔻 Main Container -->
   <div class="container">
     <h1>Flight Booking</h1>
-    
 
+    <!-- ✈️ Flight Booking Form -->
     <form id="flightForm">
       <input type="text" id="from" placeholder="From (e.g. DEL)" required />
       <input type="text" id="to" placeholder="To (e.g. JFK)" required />
-      <input type="date" id="date" required />
+
+      <label for="depart-date">Depart Date:</label>
+      <input type="date" id="depart-date" required />
+
+      <label for="return-date">Return Date:</label>
+      <input type="date" id="return-date" />
+
+      <label for="travellers">Travellers:</label>
+      <input type="number" id="travellers" min="1" value="1" required />
+
+      <label for="cabin">Cabin Class:</label>
+      <select id="cabin" required>
+        <option value="">Select Cabin</option>
+        <option value="Economy">Economy</option>
+        <option value="Premium Economy">Premium Economy</option>
+        <option value="Business">Business</option>
+        <option value="First Class">First Class</option>
+      </select>
+
       <button type="submit">Search Flights</button>
     </form>
 
+    <!-- 🔽 Search Results -->
     <div id="results" class="results"></div>
-    <div>
-        <div class="flight-wrapper"></div>
-        <div class="flight-column left"></div>
-        <div class="flight-column right"></div>
-    </div>
+    <div class="flight-wrapper"></div>
+    <div class="flight-column left"></div>
+    <div class="flight-column right"></div>
     <div class="extra-flight"></div>
-  
- 
 
-
-  <!-- Payment Modal -->
-  <div class="modal" id="paymentModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Choose Payment Method</h2>
-      <div class="payment-options">
-        <button onclick="showUPI()">UPI</button>
-        <button onclick="showCard()">Card</button>
-        <button onclick="showNetBanking()">Net Banking</button>
-        <button onclick="showQR()">QR Code</button>
+    <!-- 💳 Payment Modal -->
+    <div class="modal hidden" id="paymentModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Choose Payment Method</h2>
+        <div class="payment-options">
+          <button onclick="showUPI()">UPI</button>
+          <button onclick="showCard()">Card</button>
+          <button onclick="showNetBanking()">Net Banking</button>
+          <button onclick="showQR()">QR Code</button>
+        </div>
+        <div id="paymentDetails" class="payment-details"></div>
       </div>
-      <div id="paymentDetails" class="payment-details"></div>
-      
     </div>
   </div>
 
