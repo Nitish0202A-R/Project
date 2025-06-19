@@ -125,10 +125,11 @@ function showNetBanking() {
 function showQR() {
   document.getElementById("paymentDetails").innerHTML = `
     <h3>Scan QR to Pay</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay&size=200x200" alt="QR Code" />
+    <img src="img.html/QR.jpg" alt="QR Code" style="width:150px; height:auto;" />
     <p>Scan using any UPI app</p>
   `;
 }
+
 
 // Confirm payment function
 function confirmPayment() {
