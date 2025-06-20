@@ -1,0 +1,56 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: black;
+    color: white;
+  }
+
+  h2 {
+    color: red;
+  }
+
+  input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid red;
+    background-color: #222;
+    color: white;
+  }
+
+  button {
+    padding: 8px 12px;
+    margin: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #111;
+    color: white;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid red;
+    text-align: left;
+  }
+
+  th {
+    background-color: #222;
+    color: red;
+  }
+
+  tr:nth-child(even) {
+    background-color: #1a1a1a;
+  }
+
+  tr:hover {
+    background-color: #333;
+  }
+
