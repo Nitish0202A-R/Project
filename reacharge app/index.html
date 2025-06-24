@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('mobile')">Mobile</div>
+      <div class="tab" onclick="switchTab('dth')">DTH</div>
+    </div>
+
+    <div id="mobile" class="form active">
+      <input type="text" placeholder="Enter Mobile Number" id="mobileNumber">
+      <select id="mobileOperator">
+        <option value="">Select Operator</option>
+        <option value="Airtel">Airtel</option>
+        <option value="Jio">Jio</option>
+        <option value="Vi">Vi</option>
+        <option value="BSNL">BSNL</option>
+        
+      </select>
+      <input type="number" placeholder="Enter Amount" id="mobileAmount">
+      <button onclick="recharge('mobile')">Recharge Now</button>
+      <button onclick="showOffers()">Check Offers</button>
+    </div>
+
+    <div id="dth" class="form">
+      <input type="text" placeholder="Enter DTH ID" id="dthId">
+      <select id="dthOperator">
+        <option value="">Select DTH Operator</option>
+        <option value="Tata Play">Tata Play</option>
+        <option value="Airtel DTH">Airtel DTH</option>
+        <option value="Dish TV">Dish TV</option>
+        <option value="Sun Direct">Sun Direct</option>
+      </select>
+      <input type="number" placeholder="Enter Amount" id="dthAmount">
+      <button onclick="recharge('dth')">Recharge Now</button>
+    </div>
+  </div>
+        <script src="script.js"></script>
+</body>
+</html>
